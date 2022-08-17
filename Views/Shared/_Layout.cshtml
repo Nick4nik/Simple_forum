@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width" />
+    @RenderSection("title", false)
+    @RenderSection("scripts", false)
+    @RenderSection("styles", false)
+    <script src="~/js/site.js" defer></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body>
+    <div class="navbar">
+		<a class="href" asp-controller="Home" asp-action="Index">Home</a>
+		<a class="href" asp-controller="User" asp-action="Index">Info</a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a class="login" asp-controller="Login" asp-action="Logout">Sign out</a>
+        }
+        else
+        {
+            <a class="login" href="/Login/Login">Sign in</a>
+            <a class="login" href="/Login/Login">Sign up</a>
+        }
+	</div>
+    <div class="main">
+        @if (IsSectionDefined("Body"))
+        {
+            @RenderSection("body", false)
+        }
+        else
+        {
+            <label id="noContent">Sorry. It`s no content yet.</label>
+        }
+    </div>
+</body>
+</html>

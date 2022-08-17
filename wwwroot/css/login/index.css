@@ -1,0 +1,39 @@
+﻿#passMatch,
+#passEmpty,
+#emailCheck {
+	display: none;
+	position: relative;
+}
+
+#login {
+	padding: 2px;
+	display: block;
+	border: solid;
+	float: right;
+	width: 200px;
+}
+
+#register {
+	padding: 2px;
+	display: block;
+	border: solid;
+	float: right;
+	width: 200px;
+}
+
+input:valid {
+	border: 1px green solid;
+}
+
+option[value=""][disabled] {
+	display: none;
+	border: 1px red solid;
+}
+
+input {
+	width: 180px;
+}
+
+#logRemember {
+	width: auto;
+}
