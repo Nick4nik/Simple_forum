@@ -1,0 +1,58 @@
+﻿@model ShowTopicViewModel
+
+@section title {
+<title>Show topic</title>
+}
+@section scripts {
+<script src="~/js/topic/show.js" defer></script>
+}
+@section styles {
+<link rel="stylesheet" href="~/css/topic/show.css" />
+}
+
+@section body {
+<table>
+    <tbody>
+        <tr>
+            <td valign="top">
+                <div id="topic" class="container">
+                    <div class="topicName" id="topicName">
+                        @Model.Name
+                    </div>
+                    <div class="topicMessage" id="topicMessage">
+                        @Model.Description
+                    </div>
+                    <div class="posts" id="posts">
+                        @foreach (var element in Model.Posts)
+                        {
+                            <div class="post" id="post">
+                                <div class="description" id="description">
+                                    @element.Description
+                                </div>
+                                <div class="created" id="created">
+                                    @element.Created
+                                </div>
+                                @if (element.IsUpdated)
+                                {
+                                    <div class="updated" id="updated">
+                                        Updated at @element.Updated
+                                    </div>
+                                }
+                                <div class="author" id="author">
+                                    @element.User.UserName
+                                </div>
+                                <div class="editPost" id="editPost">
+                                    <a class="href" asp-controller="Post" asp-action="EditPost" asp-route-id="@element.Id">Edit this post</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="createPost">
+                            <a class="href" asp-controller="Post" asp-action="CreatePost" asp-route-id="@Model.Id">Create new post</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+}

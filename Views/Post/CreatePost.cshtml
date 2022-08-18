@@ -1,0 +1,42 @@
+﻿@model CreatePostViewModel
+
+@section title {
+<title>Create new post</title>
+}
+@section scripts {
+<script src="~/js/post/create.js" defer></script>
+}
+@section styles {
+<link rel="stylesheet" href="~/css/post/create.css" />
+}
+
+@section body {
+<table>
+    <tbody>
+        <tr>
+            <td valign="top">
+                @if (!string.IsNullOrEmpty(Model.Error))
+                {
+                    <div class="errorMessage" id="errorMessage">
+                        @Model.Error
+                    </div>
+                }
+                <div class="createPost" id="createPost">
+                    <form method="post" asp-controller="Post" asp-action="CreatePost">
+                        <input type="hidden" value="@Model.Topic" />
+                        <input type="hidden" value="@Model.TopicId" />
+                        <div>
+                            <label for="Description">Description</label><br />
+                            <textarea id="Description" name="Description" required>
+                            </textarea>
+                        </div>
+                        <div>
+                            <button>Create post</button>
+                        </div>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+}

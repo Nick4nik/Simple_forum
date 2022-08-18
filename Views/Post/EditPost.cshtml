@@ -1,0 +1,43 @@
+﻿@model EditPostViewModel
+
+@section title {
+<title>Edit post</title>
+}
+@section scripts {
+<script src="~/js/post/edit.js" defer></script>
+}
+@section styles {
+<link rel="stylesheet" href="~/css/post/edit.css" />
+}
+
+@section body {
+<table>
+    <tbody>
+        <tr>
+            <td valign="top">
+                @if (!string.IsNullOrEmpty(Model.Error))
+                {
+                    <div class="errorMessage" id="errorMessage">
+                        @Model.Error
+                    </div>
+                }
+                    <div class="editPost" id="editPost">
+                    <form method="post" asp-controller="Post" asp-action="EditPost">
+                        <input type="hidden" value="@Model.Post.Topic" />
+                        <input type="hidden" value="@Model.Post.TopicId" />
+                        <div>
+                            <label for="Description">Description</label><br />
+                            <textarea id="Description" name="Post.Description" required>
+                                @Model.Post.Description
+                            </textarea>
+                        </div>
+                        <div>
+                            <button>Edit post</button>
+                        </div>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+}

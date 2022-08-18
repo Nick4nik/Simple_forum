@@ -1,0 +1,38 @@
+﻿@model CreateTopicViewModel
+
+@section title {
+    <title>Create topic</title>
+}
+    @section scripts {
+    <script src="~/js/topic/create.js" defer></script>
+}
+    @section styles {
+    <link rel="stylesheet" href="~/css/topic/create.css" />
+}
+
+@section body {
+<table>
+    <tbody>
+        <tr>
+            <td valign="top">
+                <div id="create" class="container">
+                    <form method="post" asp-controller="Topic" asp-action="CreateTopic">
+                        <div>
+                            <label for="Name">Name</label><br />
+                            <input id="Name" name="Name" type="text" required />
+                        </div>
+                        <div>
+                            <label for="Description">Description</label><br />
+                            <textarea id="Description" name="Description" required>
+                            </textarea>
+                        </div>
+                        <div>
+                            <button>Create topic</button>
+                        </div>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+}

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Test_Task_for_GeeksForLess.Models;
-using Test_Task_for_GeeksForLess.ViewModels.Logins;
+using Test_Task_for_GeeksForLess.ViewModels.Login;
 
 namespace Test_Task_for_GeeksForLess.Controllers
 {
@@ -34,8 +34,9 @@ namespace Test_Task_for_GeeksForLess.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginRegisterViewModel model)
         {
+            var user = await userManager.FindByEmailAsync(model.LoginEmail);
             var result = await signInManager.PasswordSignInAsync(
-                model.LoginEmail, model.LoginPassword, model.LoginRememberMe, false);
+                user.UserName, model.LoginPassword, model.LoginRememberMe, false);
             if (!result.Succeeded)
             {
                 model.Error = true;
@@ -63,7 +64,8 @@ namespace Test_Task_for_GeeksForLess.Controllers
                 User user = new User
                 {
                     Email = model.RegisterEmail,
-                    UserName = model.RegisterName,
+                    UserName = model.RegisterEmail,
+                    Name = model.RegisterName
                 };
                 var result = await userManager.CreateAsync(user, model.RegisterPassword);
 

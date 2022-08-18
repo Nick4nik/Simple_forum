@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Test_Task_for_GeeksForLess.Models;
 using Test_Task_for_GeeksForLess.Other.Extensions;
@@ -13,17 +14,17 @@ namespace Test_Task_for_GeeksForLess.Controllers
 {
     public class TopicController : Controller
     {
-        private readonly UserManager<User> userManager;
         private readonly ApplicationContext db;
+        private readonly UserManager<User> userManager;
 
-        public TopicController(UserManager<User> userManager, ApplicationContext db)
+        public TopicController(ApplicationContext db, UserManager<User> userManager)
         {
-            this.userManager = userManager;
             this.db = db;
+            this.userManager = userManager;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Show()
+        public async Task<IActionResult> ShowAllTopic()
         {
             ShowAllTopicViewModel model = new();
 
@@ -34,49 +35,28 @@ namespace Test_Task_for_GeeksForLess.Controllers
                 return View(model);
             }
 
-            model.Topics = await db.Topics.ToListAsync();
+            model.Topics = await db.Topics.Include(x => x.User)
+                .Include(x => x.Posts).ToListAsync();
             model.Count = true;
             return View(model);
         }
 
-
         [HttpGet]
-        public async Task<IActionResult> Show(int id = 0, string name = "")
+        public async Task<IActionResult> ShowTopic(int id = 0)
         {
-            
             ShowTopicViewModel model = new();
             Topic topic = new();
             if (!db.Users.Any())
             {
                 string Error = "This topic doesn't exist yet";
-                return RedirectToAction("Index", "Home", new { Error });
+                return RedirectToAction("Index", "Home", Error);
             }
-            if (id != 0)
-            {
-                topic = await db.Topics.FirstAsync(x => x.Id == id);
-                if (topic == null)
-                {
-
-                    string Error = "This topic doesn't exist yet";
-                    return RedirectToAction("Index", "Home", new { Error });
-                }
-
-                model.Id = id;
-                model.Name = topic.Name;
-                model.Description = topic.Description;
-                model.Created = topic.Created;
-                model.UserId = topic.UserId;
-                model.Posts = topic.Posts;
-
-                return View(model);
-            }
-
-            topic = await db.Topics.FirstAsync(x => x.Name == name);
+            topic = await db.Topics.Include(x => x.User).Include(x => x.Posts)
+                    .FirstAsync(x => x.Id == id);
             if (topic == null)
             {
-
                 string Error = "This topic doesn't exist yet";
-                return RedirectToAction("Index", "Home", new { Error });
+                return RedirectToAction("Index", "Home", Error);
             }
 
             model.Id = id;
@@ -87,42 +67,30 @@ namespace Test_Task_for_GeeksForLess.Controllers
             model.Posts = topic.Posts;
 
             return View(model);
-
         }
+
         [HttpGet]
-        public async Task<IActionResult> Create(string? Error)
+        public async Task<IActionResult> CreateTopic()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateTopicViewModel model)
+        public async Task<IActionResult> CreateTopic(CreateTopicViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                string Error = "Ooops... Something went wrong.Please retype.";
-                return RedirectToAction("Create", new { Error });
-            }
-
             Topic topic = new()
             {
                 Name = model.Name,
-                Description = model.Description,
+                Description = model.Description.RemoveWhiteSpace(),
                 Created = DateTime.Now,
-                UserId = HttpContext.GetUserIdString()
+                LastUpdate = DateTime.Now,
+                User = await userManager.FindByIdAsync(HttpContext.GetUserIdString())
             };
 
             await db.Topics.AddAsync(topic);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                string Error = ex.Message;
-                return RedirectToAction("Create", new { Error });
-            }
-            return RedirectToAction("Show", new { model.Name });
+            await db.SaveChangesAsync();
+            var existingTopic = await db.Topics.FirstAsync(x => x.Name == topic.Name);
+            return RedirectToAction("ShowTopic", existingTopic.Id);
         }
     }
 }

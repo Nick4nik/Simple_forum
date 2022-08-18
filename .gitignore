@@ -2,7 +2,7 @@
 # Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
 ################################################################################
 
-/obj
-/.vs
-/bin/Debug/net5.0
-/Visual Studio 2022/Visualizers
+obj/
+.vs/
+bin/
+Visual Studio 2022/

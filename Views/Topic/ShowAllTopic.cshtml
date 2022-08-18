@@ -1,0 +1,54 @@
+﻿@model ShowAllTopicViewModel
+
+@section title {
+<title>Show all topics</title>
+}
+@section scripts {
+<script src="~/js/topic/showAll.js" defer></script>
+}
+@section styles {
+<link rel="stylesheet" href="~/css/topic/showAll.css" />
+}
+
+@section body {
+<table>
+    <tbody>
+        <tr>
+            <td valign="top">
+                @if (Model.Count)
+                {
+                    foreach (var element in Model.Topics)
+                    {
+                        <div class="topic" id="topic">
+                            <div class="topicName" id="topicName">
+                                <a class="href" asp-controller="Topic" asp-action="ShowTopic" asp-route-id="@element.Id">@element.Name</a>
+                            </div>
+                            <div class="topicCreated" id="topicCreated">
+                                @element.Created
+                            </div>
+                            <div class="topicLastUpdate" id="topicLastUpdate">
+                                @element.LastUpdate
+                            </div>
+                            <div class="topicAuthor" id="topicAuthor">
+                                @element.User.UserName
+                            </div>
+                            <div class="topicPostCount" id="topicPostCount">
+                                @element.Posts.Count
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="topic" id="topic">
+                        Topics don't exist yet
+                    </div>
+                }
+                <div class="createTopic" id="createTopic">
+                        <a class="href" asp-controller="Topic" asp-action="CreateTopic">Create new topic</a>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+}

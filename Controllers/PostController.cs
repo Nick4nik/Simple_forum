@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Threading.Tasks;
 using Test_Task_for_GeeksForLess.Models;
@@ -13,13 +11,13 @@ namespace Test_Task_for_GeeksForLess.Controllers
 {
     public class PostController : Controller
     {
-        private readonly UserManager<User> userManager;
         private readonly ApplicationContext db;
+        private readonly UserManager<User> userManager;
 
-        public PostController(UserManager<User> userManager, ApplicationContext db)
+        public PostController(ApplicationContext db, UserManager<User> userManager)
         {
-            this.userManager = userManager;
             this.db = db;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -29,7 +27,7 @@ namespace Test_Task_for_GeeksForLess.Controllers
             if (result == null)
             {
                 Error = "This post doesn't exist yet";
-                return RedirectToAction("Index", "Home", new { Error });
+                return RedirectToAction("Index", "Home", Error);
             }
 
             CreatePostViewModel model = new()
@@ -48,32 +46,20 @@ namespace Test_Task_for_GeeksForLess.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePost(CreatePostViewModel model)
         {
-            if (model.Description == null)
-            {
-                string Error = "Ooops... Something went wrong.Please retype.";
-                return RedirectToAction("CreatePost", new { id = model.TopicId, Error = Error });
-            }
-
             Post post = new()
             {
-                Description = model.Description,
+                Description = model.Description.RemoveWhiteSpace(),
                 Created = DateTime.Now,
                 IsUpdated = false,
-                UserId = HttpContext.GetUserIdString(),
+                User = await userManager.FindByIdAsync(HttpContext.GetUserIdString()),
                 TopicId = model.TopicId,
                 Topic = model.Topic
             };
+            Topic topic = post.Topic;
+            topic.LastUpdate = post.Created;
             await db.Posts.AddAsync(post);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                string Error = ex.Message;
-                return RedirectToAction("CreatePost", new { model.TopicId, Error });
-            }
-            return RedirectToAction("Show", "Topic", new { model.TopicId });
+            await db.SaveChangesAsync();
+            return RedirectToAction("Show", "Topic", model.TopicId);
         }
 
         [HttpGet]
@@ -83,7 +69,7 @@ namespace Test_Task_for_GeeksForLess.Controllers
             if (result == null)
             {
                 Error = "This post doesn't exist yet";
-                return RedirectToAction("Index", "Home", new { Error });
+                return RedirectToAction("Index", "Home", Error);
             }
 
             EditPostViewModel model = new()
@@ -100,24 +86,14 @@ namespace Test_Task_for_GeeksForLess.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPost(EditPostViewModel model)
         {
-            if (string.IsNullOrEmpty(model.Post.Description))
-            {
-                string Error = "Description cannot be empty";
-                return RedirectToAction("EditPost", new { model.Post.TopicId, Error });
-            }
-
             Post post = model.Post;
+            Topic topic = post.Topic;
+            post.IsUpdated = true;
+            post.Updated = topic.LastUpdate = DateTime.Now;
             db.Posts.Update(post);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                string Error = ex.Message;
-                return RedirectToAction("EditPost", new { model.Post.TopicId, Error });
-            }
-            return RedirectToAction("Show", "Topic", new { model.Post.TopicId });
+            db.Topics.Update(topic);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Show", "Topic", model.Post.TopicId);
         }
     }
 }
