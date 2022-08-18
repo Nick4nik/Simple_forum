@@ -1,1 +1,68 @@
-﻿
+﻿.topic-head {
+	display: flex;
+	width: 100%;
+}
+
+.topic-head div {
+	padding: 5px;
+	margin: 2px;
+	background-color: #2C2C2C;
+	font-weight: bold;
+}
+
+.topic-head .topic-description {
+	flex: 70%;
+	height: 30px;
+}
+
+.topic-head .topic-post-count {
+	flex: 15%;
+}
+
+.topic-head .topic-last-update {
+	flex: 15%;
+}
+
+.topic-row {
+	display: flex;
+	width: 100%;
+}
+
+.topic-row .topic-description,
+.topic-row .topic-post-count,
+.topic-row .topic-last-update {
+	padding: 5px;
+	margin: 2px;
+	background-color: #131415;
+}
+
+.topic-row .topic-description {
+	flex: 70%;
+}
+
+.topic-row .topic-post-count {
+	flex: 15%;
+}
+
+.topic-row .topic-last-update {
+	flex: 15%;
+}
+
+.create-topic {
+	display: flex;
+	width: 120px;
+	height: 30px;
+	padding: 5px;
+	margin: 2px;
+	background-color: #131415;
+}
+
+html {
+	background-color: rgb(0, 0, 0);
+	color: #FEFEFE;
+}
+
+a {
+	color: #FF0042;
+	text-decoration: none;
+}

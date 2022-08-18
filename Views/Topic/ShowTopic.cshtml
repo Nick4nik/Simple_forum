@@ -11,48 +11,44 @@
 }
 
 @section body {
-<table>
-    <tbody>
-        <tr>
-            <td valign="top">
-                <div id="topic" class="container">
-                    <div class="topicName" id="topicName">
-                        @Model.Name
-                    </div>
-                    <div class="topicMessage" id="topicMessage">
-                        @Model.Description
-                    </div>
-                    <div class="posts" id="posts">
-                        @foreach (var element in Model.Posts)
-                        {
-                            <div class="post" id="post">
-                                <div class="description" id="description">
-                                    @element.Description
-                                </div>
-                                <div class="created" id="created">
-                                    @element.Created
-                                </div>
-                                @if (element.IsUpdated)
-                                {
-                                    <div class="updated" id="updated">
-                                        Updated at @element.Updated
-                                    </div>
-                                }
-                                <div class="author" id="author">
-                                    @element.User.UserName
-                                </div>
-                                <div class="editPost" id="editPost">
-                                    <a class="href" asp-controller="Post" asp-action="EditPost" asp-route-id="@element.Id">Edit this post</a>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <div class="createPost">
-                            <a class="href" asp-controller="Post" asp-action="CreatePost" asp-route-id="@Model.Id">Create new post</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="topic-table">
+    <div class="topic-head">
+        <div class="topic-name">@Model.Name</div>
+        <div class="topic-description">@Model.Description</div>
+        <div class="topic-author"> Started by <a>@Model.User.Name</a></div>
+    </div>
+    @foreach (var element in Model.Posts)
+    {
+    <div class="post-row">
+        <div class="post-info">
+            <div class="user-email">
+                @element.User.Email
+            </div>
+            <div class="user-name">
+                @element.User.Name
+            </div>
+            <div class="user-created">
+                @element.Created
+            </div>
+        </div>
+        <div class="post-body">
+            <div class="post-description">
+                @element.Description
+            </div>
+            @if (element.IsUpdated)
+            {
+            <div class="post-updated">
+                Updated at @element.Updated
+            </div>
+            }
+            <div class="edit-post">
+                <a class="href" asp-controller="Post" asp-action="EditPost" asp-route-id="@element.Id">Edit post</a>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="createPost">
+        <a class="href" asp-controller="Post" asp-action="CreatePost" asp-route-id="@Model.Id">Create new post</a>
+    </div>
+</div>
 }

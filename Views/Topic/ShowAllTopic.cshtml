@@ -11,44 +11,42 @@
 }
 
 @section body {
-<table>
-    <tbody>
-        <tr>
-            <td valign="top">
-                @if (Model.Count)
-                {
-                    foreach (var element in Model.Topics)
-                    {
-                        <div class="topic" id="topic">
-                            <div class="topicName" id="topicName">
-                                <a class="href" asp-controller="Topic" asp-action="ShowTopic" asp-route-id="@element.Id">@element.Name</a>
-                            </div>
-                            <div class="topicCreated" id="topicCreated">
-                                @element.Created
-                            </div>
-                            <div class="topicLastUpdate" id="topicLastUpdate">
-                                @element.LastUpdate
-                            </div>
-                            <div class="topicAuthor" id="topicAuthor">
-                                @element.User.UserName
-                            </div>
-                            <div class="topicPostCount" id="topicPostCount">
-                                @element.Posts.Count
-                            </div>
-                        </div>
-                    }
-                }
-                else
-                {
-                    <div class="topic" id="topic">
-                        Topics don't exist yet
-                    </div>
-                }
-                <div class="createTopic" id="createTopic">
-                        <a class="href" asp-controller="Topic" asp-action="CreateTopic">Create new topic</a>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="topic-table">
+    <div class="topic-head">
+        <div class="topic-description">Description</div>
+        <div class="topic-post-count">Posts</div>
+        <div class="topic-last-update">Last reply</div>
+    </div>
+    @if (Model.Count)
+    {
+    foreach (var element in Model.Topics)
+    {
+    <div class="topic-row">
+        <div class="topic-description">
+            <a class="href" asp-controller="Topic" asp-action="ShowTopic" asp-route-id="@element.Id">@element.Name</a>
+            <br>
+            <span>Started by <b><a>@element.User.Name</a></b> .</span>
+        </div>
+        <div class="topic-post-count">
+            @element.Posts.Count posts
+        </div>
+
+        <div class="topic-last-update">
+            @element.LastUpdate
+        </div>
+    </div>
+    }
+    }
+    else
+    {
+    <div class="topic-row">
+        <div class="topic-description">
+            Topics don't exist yet
+        </div>
+    </div>
+    }
+    <div class="create-topic">
+        <a class="href" asp-controller="Topic" asp-action="CreateTopic">Create new topic</a>
+    </div>
+</div>
 }

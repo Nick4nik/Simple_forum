@@ -9,5 +9,7 @@ namespace Test_Task_for_GeeksForLess.ViewModels.Topic
     {
         public List<Models.Topic> Topics { get; set; }
         public bool Count { get; set; }
+        public List<string> UserAuthor { get; set; }
+        public List<string> UserUpdate { get; set; }
     }
 }

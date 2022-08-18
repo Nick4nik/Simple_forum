@@ -65,6 +65,7 @@ namespace Test_Task_for_GeeksForLess.Controllers
             model.Created = topic.Created;
             model.UserId = topic.UserId;
             model.Posts = topic.Posts;
+            model.User = topic.User;
 
             return View(model);
         }
