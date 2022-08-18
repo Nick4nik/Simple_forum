@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Uc1GKJJ5YL1FIbJBUxKu0xLusJpw5OsdmNLyJd7gRkf2XciJtI0/kH15C0eTMDWOyd4yiHZK37nhjsqh+1MyZg==",
+  "dgSpecHash": "XOTTrEeP9GIb6SWPDt72+m8Io0A5DUZDfpbIOu1dUZaBd/+RrJlgar5PbawInkiTZ06bTQBeW1z5MWDUNIPS/Q==",
   "success": true,
   "projectFilePath": "C:\\Visual Studio 2022\\repos\\My\\Test Task for GeeksForLess\\Test Task for GeeksForLess.csproj",
   "expectedPackageFiles": [
@@ -110,7 +110,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Пакет \"EntityFramework 5.0.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net5.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "message": "Пакет \"EntityFramework 5.0.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net5.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
       "libraryId": "EntityFramework",
       "targetGraphs": [
         "net5.0"

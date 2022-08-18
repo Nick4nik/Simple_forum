@@ -13,7 +13,6 @@
 <body>
     <div class="navbar">
 		<a class="href" asp-controller="Home" asp-action="Index">Home</a>
-		<a class="href" asp-controller="User" asp-action="Index">Info</a>
         @if (User.Identity.IsAuthenticated)
         {
             <a class="login" asp-controller="Login" asp-action="Logout">Sign out</a>

@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace Test_Task_for_GeeksForLess.Other
+namespace Test_Task_for_GeeksForLess.Other.Extensions
 {
     public static class HttpContextExtension
     {

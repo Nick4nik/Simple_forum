@@ -15,9 +15,9 @@ namespace Test_Task_for_GeeksForLess.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string? Error)
         {
-            return View();
+            return View(Error);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
