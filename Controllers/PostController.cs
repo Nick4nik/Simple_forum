@@ -21,12 +21,12 @@ namespace Test_Task_for_GeeksForLess.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> CreatePost(int id, string Error = "")
+        public async Task<IActionResult> CreatePost(int id)
         {
             var result = await db.Topics.FirstAsync(x => x.Id == id);
             if (result == null)
             {
-                Error = "This post doesn't exist yet";
+                string Error = "This topic doesn't exist yet";
                 return RedirectToAction("Index", "Home", Error);
             }
 
@@ -36,39 +36,38 @@ namespace Test_Task_for_GeeksForLess.Controllers
                 Topic = result
             };
 
-            if (Error != "")
-            {
-                model.Error = Error;
-            }
             return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreatePost(CreatePostViewModel model)
         {
+            var now = DateTime.Now;
             Post post = new()
             {
                 Description = model.Description.RemoveWhiteSpace(),
-                Created = DateTime.Now,
+                Created = now,
                 IsUpdated = false,
                 User = await userManager.FindByIdAsync(HttpContext.GetUserIdString()),
-                TopicId = model.TopicId,
-                Topic = model.Topic
             };
-            Topic topic = post.Topic;
-            topic.LastUpdate = post.Created;
+            Topic topic = await db.Topics.FirstAsync(x => x.Id == model.TopicId);
+            post.Topic = topic;
+            post.TopicId = topic.Id;
+            topic.LastUpdate = now;
+
+            db.Topics.Update(topic);
             await db.Posts.AddAsync(post);
             await db.SaveChangesAsync();
-            return RedirectToAction("Show", "Topic", model.TopicId);
+            return RedirectToAction("Show", "Topic", new { model.TopicId });
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditPost(int id, string Error = "")
+        public async Task<IActionResult> EditPost(int id)
         {
             var result = await db.Posts.FirstAsync(x => x.Id == id);
             if (result == null)
             {
-                Error = "This post doesn't exist yet";
+                string Error = "This post doesn't exist yet";
                 return RedirectToAction("Index", "Home", Error);
             }
 
@@ -76,24 +75,24 @@ namespace Test_Task_for_GeeksForLess.Controllers
             {
                 Post = result
             };
-            if (Error != "")
-            {
-                model.Error = Error;
-            }
             return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> EditPost(EditPostViewModel model)
         {
-            Post post = model.Post;
-            Topic topic = post.Topic;
+            var now = DateTime.Now;
+            Post post = await db.Posts.FirstAsync(x => x.Id == model.Post.Id);
+            post.Description = model.Post.Description;
             post.IsUpdated = true;
-            post.Updated = topic.LastUpdate = DateTime.Now;
+            post.Updated = now;
+            Topic topic = await db.Topics.FirstAsync(x => x.Id == model.Post.TopicId);
+            topic.LastUpdate = now;
+
             db.Posts.Update(post);
             db.Topics.Update(topic);
             await db.SaveChangesAsync();
-            return RedirectToAction("Show", "Topic", model.Post.TopicId);
+            return RedirectToAction("ShowTopic", "Topic", new { topic.Id });
         }
     }
 }

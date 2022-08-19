@@ -1,1 +1,67 @@
-﻿
+﻿.topic-create {
+	display: flex;
+	width: 100%;
+	height: 100px;
+}
+
+.topic-name {
+	display: flex;
+	flex: 35%;
+	padding: 5px;
+	margin: 2px;
+	background-color: #131415;
+	flex-direction: column;
+}
+
+.topic-description {
+	display: flex;
+	flex: 65%;
+	padding: 5px;
+	margin: 2px;
+	background-color: #131415;
+	flex-direction: column;
+}
+
+.topic-name .topic-name-description,
+.topic-name .topic-name-show {
+	padding: 5px;
+	margin: 2px;
+}
+
+.topic-name .topic-name-description {
+	height: 15%;
+	width: 100%;
+}
+
+.topic-name .topic-name-show {
+	height: 85%;
+	width: 100%;
+}
+
+.topic-name-show-input {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
+
+.topic-description .topic-description-description,
+.topic-description .topic-description-show {
+	padding: 5px;
+	margin: 2px;
+}
+
+.topic-description .topic-description-description {
+	height: 15%;
+	width: 100%;
+}
+
+.topic-description .topic-description-show {
+	height: 85%;
+	width: 100%;
+}
+
+.topic-description-show-textarea {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}

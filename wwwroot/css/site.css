@@ -2,6 +2,8 @@
     display: flex;
     width: 100%;
     margin: 0;
+    background-color: rgb(0, 0, 0);
+    color: #FEFEFE;
 }
 
 .navbar {
@@ -39,6 +41,11 @@
     margin-top: 35px;
     padding: 15px;
     width: 100%;
+}
+
+a {
+    color: #FF0042;
+    text-decoration: none;
 }
 
 * {

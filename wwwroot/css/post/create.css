@@ -1,1 +1,36 @@
-﻿
+﻿.post-create {
+	display: flex;
+	width: 100%;
+	height: 100px;
+}
+
+.post-description {
+	display: flex;
+	flex: 100%;
+	padding: 5px;
+	margin: 2px;
+	background-color: #131415;
+	flex-direction: column;
+}
+
+.post-description .post-description-description,
+.post-description .post-description-show {
+	padding: 5px;
+	margin: 2px;
+}
+
+.post-description .post-description-description {
+	height: 15%;
+	width: 100%;
+}
+
+.post-description .post-description-show {
+	height: 85%;
+	width: 100%;
+}
+
+.post-description-show-textarea {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}

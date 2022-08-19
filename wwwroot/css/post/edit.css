@@ -1,1 +1,67 @@
-﻿
+﻿.post-edit {
+	display: flex;
+	width: 100%;
+	height: 100px;
+}
+
+.post-before {
+	display: flex;
+	flex: 35%;
+	padding: 5px;
+	margin: 2px;
+	background-color: #131415;
+	flex-direction: column;
+}
+
+.post-after {
+	display: flex;
+	flex: 65%;
+	padding: 5px;
+	margin: 2px;
+	background-color: #131415;
+	flex-direction: column;
+}
+
+.post-before .post-before-description,
+.post-before .post-before-show {
+	padding: 5px;
+	margin: 2px;
+}
+
+.post-before .post-before-description {
+	height: 15%;
+	width: 100%;
+}
+
+.post-before .post-before-show {
+	height: 85%;
+	width: 100%;
+}
+
+.post-before-show-textarea {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
+
+.post-after .post-after-description,
+.post-after .post-after-show {
+	padding: 5px;
+	margin: 2px;
+}
+
+.post-after .post-after-description {
+	height: 15%;
+	width: 100%;
+}
+
+.post-after .post-after-show {
+	height: 85%;
+	width: 100%;
+}
+
+.post-after-show-textarea {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}

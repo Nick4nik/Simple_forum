@@ -21,11 +21,11 @@
     {
     <div class="post-row">
         <div class="post-info">
-            <div class="user-email">
-                @element.User.Email
-            </div>
             <div class="user-name">
                 @element.User.Name
+            </div>
+            <div class="user-email">
+                @element.User.Email
             </div>
             <div class="user-created">
                 @element.Created
@@ -35,20 +35,25 @@
             <div class="post-description">
                 @element.Description
             </div>
-            @if (element.IsUpdated)
-            {
-            <div class="post-updated">
-                Updated at @element.Updated
-            </div>
-            }
             <div class="edit-post">
-                <a class="href" asp-controller="Post" asp-action="EditPost" asp-route-id="@element.Id">Edit post</a>
+                <div class="edit-updated">
+                    @if (element.IsUpdated)
+                    {
+                    <div class="post-updated">
+                        Updated at @element.Updated
+                    </div>
+                    }
+                </div>
+                <div class="edit-link">
+                    <a class="href" asp-controller="Post" asp-action="EditPost" asp-route-id="@element.Id">Edit post</a>
+                </div>
             </div>
         </div>
     </div>
+    <hr>
     }
-    <div class="createPost">
-        <a class="href" asp-controller="Post" asp-action="CreatePost" asp-route-id="@Model.Id">Create new post</a>
+    <div class="create-post">
+        <a asp-controller="Post" asp-action="CreatePost" asp-route-id="@Model.Id">Create new post</a>
     </div>
 </div>
 }

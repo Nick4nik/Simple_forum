@@ -11,24 +11,21 @@
 }
 
 @section body {
-    @if (!string.IsNullOrEmpty(Model.Error))
-    {
-        <div class="errorMessage" id="errorMessage">
-            @Model.Error
-        </div>
-    }
-    <div class="createPost" id="createPost">
-        <form method="post" asp-controller="Post" asp-action="CreatePost">
-            <input type="hidden" value="@Model.Topic" />
+<form method="post" asp-controller="Post" asp-action="CreatePost">
+    <div class="post-create">
+        <div class="post-description">
             <input type="hidden" value="@Model.TopicId" />
-            <div>
-                <label for="Description">Description</label><br />
-                <textarea id="Description" name="Description" required>
-                                </textarea>
+            <div class="post-description-description">
+                Description
             </div>
-            <div>
-                <button>Create post</button>
+            <div class="post-description-show">
+                <textarea name="Description" class="post-description-show-textarea" required></textarea>
             </div>
-        </form>
+        </div>
     </div>
+    <hr>
+    <div>
+        <button>Create post</button>
+    </div>
+</form>
 }

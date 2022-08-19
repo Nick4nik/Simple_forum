@@ -5,6 +5,5 @@
         public string Description { get; set; }
         public int TopicId { get; set; }
         public Models.Topic Topic { get; set; }
-        public string Error { get; set; }
     }
 }

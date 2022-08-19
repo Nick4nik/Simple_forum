@@ -91,7 +91,7 @@ namespace Test_Task_for_GeeksForLess.Controllers
             await db.Topics.AddAsync(topic);
             await db.SaveChangesAsync();
             var existingTopic = await db.Topics.FirstAsync(x => x.Name == topic.Name);
-            return RedirectToAction("ShowTopic", existingTopic.Id);
+            return RedirectToAction("ShowTopic", new { existingTopic.Id });
         }
     }
 }

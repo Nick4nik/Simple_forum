@@ -11,25 +11,30 @@
 }
 
 @section body {
-    @if (!string.IsNullOrEmpty(Model.Error))
-    {
-        <div class="errorMessage" id="errorMessage">
-            @Model.Error
+<form method="post" asp-controller="Post" asp-action="EditPost">
+    < class="post-edit">
+        <div class="post-before">
+            <div class="post-before-description">
+                Description
+            </div>
+            <div class="post-before-show">
+                <textarea class="post-before-show-textarea" readonly>@Model.Post.Description</textarea>
+            </div>
         </div>
-    }
-    <div class="editPost" id="editPost">
-        <form method="post" asp-controller="Post" asp-action="EditPost">
-            <input type="hidden" value="@Model.Post.Topic" />
-            <input type="hidden" value="@Model.Post.TopicId" />
-            <div>
-                <label for="Description">Description</label><br />
-                <textarea id="Description" name="Post.Description" required>
-                    @Model.Post.Description
-                                </textarea>
+        <div class="post-after">
+            <input type="hidden" name="Model.Post.Id" value="@Model.Post.Id" />
+            <input type="hidden" name="Model.Post.TopicId" value="@Model.Post.TopicId" />
+            <div class="post-after-description">
+                New description
             </div>
-            <div>
-                <button>Edit post</button>
+            <div class="post-after-show">
+                <textarea name="Model.Post.Description" class="post-after-show-textarea"></textarea>
             </div>
-        </form>
+        </div>
     </div>
+    <hr>
+    <div>
+        <button>Edit post</button>
+    </div>
+</form>
 }

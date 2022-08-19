@@ -3,6 +3,5 @@
     public class EditPostViewModel
     {
         public Models.Post Post { get; set; }
-        public string Error { get; set; }
     }
 }

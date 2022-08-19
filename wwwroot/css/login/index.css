@@ -9,6 +9,7 @@
 	padding: 2px;
 	display: block;
 	border: solid;
+	border-color: red;
 	float: right;
 	width: 200px;
 }
@@ -17,6 +18,7 @@
 	padding: 2px;
 	display: block;
 	border: solid;
+	border-color: red;
 	float: right;
 	width: 200px;
 }

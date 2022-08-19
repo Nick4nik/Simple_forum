@@ -23,46 +23,65 @@
 	flex: 15%;
 }
 
-.topic-row {
+.post-row {
 	display: flex;
 	width: 100%;
+	height: 100px;
 }
 
-.topic-row .topic-description,
-.topic-row .topic-post-count,
-.topic-row .topic-last-update {
+.post-info {
+	display: flex;
+	flex: 25%;
 	padding: 5px;
 	margin: 2px;
 	background-color: #131415;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
-.topic-row .topic-description {
-	flex: 70%;
+.post-body {
+	display: flex;
+	flex: 75%;
+	padding: 5px;
+	margin: 2px;
+	background-color: #131415;
+	flex-wrap: wrap;
+	align-content: space-between;
 }
 
-.topic-row .topic-post-count {
-	flex: 15%;
+.post-info .user-email,
+.post-info .user-name,
+.post-info .user-created {
+	padding: 5px;
+	margin: 2px;
+	height: auto;
 }
 
-.topic-row .topic-last-update {
-	flex: 15%;
+.post-body .post-description {
+	width: 100%;
+	display: flex;
 }
 
-.create-topic {
+.post-body .edit-post {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.post-body .post-description,
+.post-body .edit-post {
+	padding: 5px;
+	margin: 2px;
+	height: auto;
+}
+
+.create-post {
 	display: flex;
 	width: 120px;
 	height: 30px;
 	padding: 5px;
 	margin: 2px;
 	background-color: #131415;
-}
-
-html {
-	background-color: rgb(0, 0, 0);
-	color: #FEFEFE;
-}
-
-a {
-	color: #FF0042;
-	text-decoration: none;
 }
