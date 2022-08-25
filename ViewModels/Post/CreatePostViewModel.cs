@@ -1,4 +1,4 @@
-﻿namespace Test_Task_for_GeeksForLess.ViewModels.Post
+﻿namespace Simple_forum.ViewModels.Post
 {
     public class CreatePostViewModel
     {

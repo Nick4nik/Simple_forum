@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Test_Task_for_GeeksForLess.Models;
+using Simple_forum.Models;
 
-namespace Test_Task_for_GeeksForLess.ViewModels.Logins
+namespace Simple_forum.ViewModels.Logins
 {
     public class LoginRegisterViewModel
     {

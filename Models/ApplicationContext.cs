@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Test_Task_for_GeeksForLess.Models
+namespace Simple_forum.Models
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
@@ -14,7 +14,7 @@ namespace Test_Task_for_GeeksForLess.Models
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=TestTaskforGeeksForLess;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=SimpleForum;Trusted_Connection=True;");
         }
     }
 }

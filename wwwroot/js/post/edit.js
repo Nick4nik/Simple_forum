@@ -1,4 +1,4 @@
-﻿namespace Test_Task_for_GeeksForLess.wwwroot.css.post
+﻿namespace Simple_forum.wwwroot.css.post
 {
     public class edit
     {

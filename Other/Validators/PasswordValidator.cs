@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Test_Task_for_GeeksForLess.Models;
+using Simple_forum.Models;
 
-namespace Test_Task_for_GeeksForLess.Validators
+namespace Simple_forum.Validators
 {
     public class PasswordValidator : IPasswordValidator<User>
     {

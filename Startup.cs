@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Test_Task_for_GeeksForLess.Models;
-using Test_Task_for_GeeksForLess.Validators;
+using Simple_forum.Models;
+using Simple_forum.Validators;
 
-namespace Test_Task_for_GeeksForLess
+namespace Simple_forum
 {
     public class Startup
     {

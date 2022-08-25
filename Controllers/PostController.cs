@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
-using Test_Task_for_GeeksForLess.Models;
-using Test_Task_for_GeeksForLess.Other.Extensions;
-using Test_Task_for_GeeksForLess.ViewModels.Post;
+using Simple_forum.Models;
+using Simple_forum.Other.Extensions;
+using Simple_forum.ViewModels.Post;
 
-namespace Test_Task_for_GeeksForLess.Controllers
+namespace Simple_forum.Controllers
 {
     public class PostController : Controller
     {
@@ -58,7 +58,7 @@ namespace Test_Task_for_GeeksForLess.Controllers
             db.Topics.Update(topic);
             await db.Posts.AddAsync(post);
             await db.SaveChangesAsync();
-            return RedirectToAction("Show", "Topic", new { model.TopicId });
+            return RedirectToAction("ShowTopic", "Topic", new { id = model.TopicId });
         }
 
         [HttpGet]
@@ -92,7 +92,7 @@ namespace Test_Task_for_GeeksForLess.Controllers
             db.Posts.Update(post);
             db.Topics.Update(topic);
             await db.SaveChangesAsync();
-            return RedirectToAction("ShowTopic", "Topic", new { topic.Id });
+            return RedirectToAction("ShowTopic", "Topic", new { id = topic.Id });
         }
     }
 }

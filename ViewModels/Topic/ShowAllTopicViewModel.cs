@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Test_Task_for_GeeksForLess.Models;
+using Simple_forum.Models;
 
-namespace Test_Task_for_GeeksForLess.ViewModels.Topic
+namespace Simple_forum.ViewModels.Topic
 {
     public class ShowAllTopicViewModel
     {

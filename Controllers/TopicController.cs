@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Test_Task_for_GeeksForLess.Models;
-using Test_Task_for_GeeksForLess.Other.Extensions;
-using Test_Task_for_GeeksForLess.ViewModels.Topic;
+using Simple_forum.Models;
+using Simple_forum.Other.Extensions;
+using Simple_forum.ViewModels.Topic;
 
-namespace Test_Task_for_GeeksForLess.Controllers
+namespace Simple_forum.Controllers
 {
     public class TopicController : Controller
     {
@@ -42,21 +42,21 @@ namespace Test_Task_for_GeeksForLess.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ShowTopic(int id = 0)
+        public async Task<IActionResult> ShowTopic(int id)
         {
             ShowTopicViewModel model = new();
             Topic topic = new();
             if (!db.Users.Any())
             {
                 string Error = "This topic doesn't exist yet";
-                return RedirectToAction("Index", "Home", Error);
+                return RedirectToAction("Index", "Home", new { Error = Error });
             }
             topic = await db.Topics.Include(x => x.User).Include(x => x.Posts)
                     .FirstAsync(x => x.Id == id);
             if (topic == null)
             {
                 string Error = "This topic doesn't exist yet";
-                return RedirectToAction("Index", "Home", Error);
+                return RedirectToAction("Index", "Home", new { Error = Error });
             }
 
             model.Id = id;
@@ -91,7 +91,7 @@ namespace Test_Task_for_GeeksForLess.Controllers
             await db.Topics.AddAsync(topic);
             await db.SaveChangesAsync();
             var existingTopic = await db.Topics.FirstAsync(x => x.Name == topic.Name);
-            return RedirectToAction("ShowTopic", new { existingTopic.Id });
+            return RedirectToAction("ShowTopic", new { id = existingTopic.Id });
         }
     }
 }

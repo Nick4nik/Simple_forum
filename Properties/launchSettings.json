@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Test_Task_for_GeeksForLess": {
+    "Simple_forum": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

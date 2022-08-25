@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Test_Task_for_GeeksForLess.Models;
-using Test_Task_for_GeeksForLess.ViewModels.Login;
+using Simple_forum.Models;
+using Simple_forum.ViewModels.Login;
 
-namespace Test_Task_for_GeeksForLess.Controllers
+namespace Simple_forum.Controllers
 {
     public class LoginController : Controller
     {

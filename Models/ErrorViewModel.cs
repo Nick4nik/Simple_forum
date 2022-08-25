@@ -1,4 +1,4 @@
-﻿namespace Test_Task_for_GeeksForLess.Models
+﻿namespace Simple_forum.Models
 {
     public class ErrorViewModel
     {

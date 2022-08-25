@@ -14,12 +14,12 @@
 <form method="post" asp-controller="Post" asp-action="CreatePost">
     <div class="post-create">
         <div class="post-description">
-            <input type="hidden" value="@Model.TopicId" />
+            <input type="hidden" name="Model.TopicId" value="@Model.TopicId" />
             <div class="post-description-description">
                 Description
             </div>
             <div class="post-description-show">
-                <textarea name="Description" class="post-description-show-textarea" required></textarea>
+                <textarea name="Model.Description" class="post-description-show-textarea" required></textarea>
             </div>
         </div>
     </div>

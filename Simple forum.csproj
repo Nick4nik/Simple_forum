@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Test_Task_for_GeeksForLess</RootNamespace>
+    <RootNamespace>Simple_forum</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

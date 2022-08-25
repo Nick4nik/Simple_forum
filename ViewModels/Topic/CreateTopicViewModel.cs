@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Test_Task_for_GeeksForLess.ViewModels.Topic
+namespace Simple_forum.ViewModels.Topic
 {
     public class CreateTopicViewModel
     {

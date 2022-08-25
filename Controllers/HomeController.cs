@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using Test_Task_for_GeeksForLess.Models;
+using Simple_forum.Models;
 
-namespace Test_Task_for_GeeksForLess.Controllers
+namespace Simple_forum.Controllers
 {
     public class HomeController : Controller
     {

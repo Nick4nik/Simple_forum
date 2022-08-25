@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Test_Task_for_GeeksForLess.Models
+namespace Simple_forum.Models
 {
     public class User : IdentityUser
     {

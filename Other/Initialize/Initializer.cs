@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Test_Task_for_GeeksForLess.Models;
+using Simple_forum.Models;
 
-namespace Test_Task_for_GeeksForLess.Initialize
+namespace Simple_forum.Initialize
 {
     public static class Initializer
     {

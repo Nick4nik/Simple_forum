@@ -5,10 +5,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-using Test_Task_for_GeeksForLess.Initialize;
-using Test_Task_for_GeeksForLess.Models;
+using Simple_forum.Initialize;
+using Simple_forum.Models;
 
-namespace Test_Task_for_GeeksForLess
+namespace Simple_forum
 {
     public class Program
     {
