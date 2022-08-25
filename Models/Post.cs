@@ -13,6 +13,7 @@ namespace Simple_forum.Models
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
         public bool IsUpdated { get; set; }
+        public bool IsEditEnabled { get; set; }
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; }

@@ -44,9 +44,12 @@
                     </div>
                     }
                 </div>
-                <div class="edit-link">
-                    <a class="href" asp-controller="Post" asp-action="EditPost" asp-route-id="@element.Id">Edit post</a>
-                </div>
+                @if (element.IsEditEnabled)
+                {
+                    <div class="edit-link">
+                        <a class="href" asp-controller="Post" asp-action="EditPost" asp-route-id="@element.Id" asp-route-guid="@element.User.Id">Edit post</a>
+                    </div>
+                }
             </div>
         </div>
     </div>

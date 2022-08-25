@@ -67,6 +67,16 @@ namespace Simple_forum.Controllers
             model.Posts = topic.Posts;
             model.User = topic.User;
 
+            var user = await userManager.FindByIdAsync(HttpContext.GetUserIdString());
+
+            foreach (var post in model.Posts)
+            {
+                if (post.User == user)
+                {
+                    post.IsEditEnabled = true;
+                }
+            }
+
             return View(model);
         }
 

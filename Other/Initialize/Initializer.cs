@@ -21,6 +21,7 @@ namespace Simple_forum.Initialize
             string postDescription = "Post description";
             DateTime postCreated = DateTime.Now;
             bool postIsUpdated = false;
+            bool postIsEditEnabled = false;
             string topicName = "Topic name";
             string topicDescription = "Topic description";
             DateTime topicCreated = postCreated;
@@ -30,6 +31,7 @@ namespace Simple_forum.Initialize
                 Description = postDescription,
                 Created = postCreated,
                 IsUpdated = postIsUpdated,
+                IsEditEnabled = postIsEditEnabled,
                 Topic = new Topic()
             };
             Topic topic = new Topic

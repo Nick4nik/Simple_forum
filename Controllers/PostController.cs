@@ -48,6 +48,7 @@ namespace Simple_forum.Controllers
                 Description = model.Description.RemoveWhiteSpace(),
                 Created = now,
                 IsUpdated = false,
+                IsEditEnabled = false,  
                 User = await userManager.FindByIdAsync(HttpContext.GetUserIdString()),
             };
             Topic topic = await db.Topics.FirstAsync(x => x.Id == model.TopicId);
@@ -62,8 +63,13 @@ namespace Simple_forum.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditPost(int id)
+        public async Task<IActionResult> EditPost(int id, Guid guid)
         {
+            if (guid != HttpContext.GetUserIdGuid())
+            {
+                string Error = "Access denied";
+                return RedirectToAction("Index", "Home", Error);
+            }
             var result = await db.Posts.FirstAsync(x => x.Id == id);
             if (result == null)
             {
